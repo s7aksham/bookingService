@@ -1,0 +1,5 @@
+INSERT INTO CARS (car_Id, model) VALUES
+  (1, 'Toyota Camry'),
+  (2, 'Toyota Camry'),
+  (3, 'BMW 650'),
+  (4, 'BMW 650');
