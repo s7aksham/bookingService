@@ -19,11 +19,11 @@ public class BookingServiceImpl implements BookingService{
     private CarRepository carRepository;
 
     @Override
-    public Booking saveBooking(Booking booking) {
+    public Booking saveBooking(Booking booking) throws RuntimeException{
         Car car = carRepository.getById(booking.getCar().getCarId());
         booking.setCar(car);
         synchronized (car) {
-            if (car.isAvailable(booking.getStartDate(),booking.getEndDate())) {
+            if (car.isAvailable(booking.getStartDate(),booking.getEndDate(),null)) {
                 Booking savedBooking = bookingRepository.save(booking);
                 car.addBooking(savedBooking);
                 return savedBooking;
@@ -55,7 +55,7 @@ public class BookingServiceImpl implements BookingService{
         Booking oldBooking = getBooking(bookingId);
         Car car = oldBooking.getCar();
         synchronized (car) {
-            if (car.isAvailable(newBooking.getStartDate(), newBooking.getEndDate())) {
+            if (car.isAvailable(newBooking.getStartDate(), newBooking.getEndDate(),bookingId)) {
                 Booking updatedBooking = car.updateBooking(oldBooking.getStartDate(),
                         oldBooking.getEndDate(),
                         newBooking.getStartDate(),

@@ -46,10 +46,12 @@ public class Car {
         this.bookingList.add(booking);
     }
 
-    public boolean isAvailable(Date startDate, Date endDate){
+    public boolean isAvailable(Date startDate, Date endDate, Long skipBookingId){
         boolean available = true;
         // check if any saved bookings overlaps with new requested booking
         for(Booking savedBooking : this.bookingList) {
+            if(skipBookingId!=null && savedBooking.getBookingId().compareTo(skipBookingId)==0)
+                continue;
             if (savedBooking.getEndDate().compareTo(startDate)==0||
                     savedBooking.getEndDate().compareTo(endDate)==0||
                     savedBooking.getStartDate().compareTo(startDate)==0||

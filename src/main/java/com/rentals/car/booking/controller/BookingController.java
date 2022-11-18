@@ -64,7 +64,7 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/car/{id}")
-    public List<Booking> getBookingByCarId(@PathVariable("id") Long carId){
+    public List<Booking> getBookingByCarId(@PathVariable("id") Long carId) throws Exception{
         LOGGER.info("Request to get bookings for particular carId:"+carId);
         return carService.getCarBookings(carId);
     }

@@ -65,7 +65,7 @@ public class Booking {
                 "bookingId=" + bookingId +
                 ", startDate=" + startDate.toString() +
                 ", endDate=" + endDate.toString() +
-                ", carId=" + car.getCarId() +
+                ", car=" + car.getCarId() +
                 ", car model=" + car.getModel() +
                 '}';
     }
